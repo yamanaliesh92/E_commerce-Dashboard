@@ -1,3 +1,4 @@
+import { ModalProvider } from "@/provider/modal-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import type { Metadata } from "next";
@@ -19,7 +20,10 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          <ModalProvider />
+          {children}
+        </body>
       </html>
     </ClerkProvider>
   );
