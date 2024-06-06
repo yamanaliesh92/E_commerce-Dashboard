@@ -1,12 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { UserButton } from "@clerk/nextjs";
-import Image from "next/image";
+"use client";
+import Modal from "@/components/ui/modal";
 
 export default function Home() {
-  return (
-    <>
-      hello
-      <Button>Hello</Button>
-    </>
-  );
+  return <>hellon</>;
 }
