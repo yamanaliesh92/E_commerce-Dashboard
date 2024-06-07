@@ -18,5 +18,5 @@ model Store{
   name String
   userId String
   createdAt DateTime  @default(now())
-  updatedAt DateTime
+  updatedAt DateTime  @updatedAt
 }

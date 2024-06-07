@@ -1,0 +1,16 @@
+version: "3.6"
+
+services:
+  apidb:
+    image: postgres
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_USER=name
+      - POSTGRES_DB=database
+    profiles:
+      - dev
+
+networks:
+  project:
