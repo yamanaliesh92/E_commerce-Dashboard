@@ -2,6 +2,7 @@ import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import React from "react";
+import SettingsForm from "./_components/settings-form";
 
 export default async function SettingsPage({
   params,
@@ -21,7 +22,9 @@ export default async function SettingsPage({
   }
   return (
     <div className="flex-col">
-      <div className="flex-1 space-y-4 p-8 pt-6"></div>
+      <div className="flex-1 space-y-4 p-8 pt-6">
+        <SettingsForm initialData={store} />
+      </div>
     </div>
   );
 }
