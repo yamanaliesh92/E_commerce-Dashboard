@@ -1,4 +1,5 @@
 import { ModalProvider } from "@/provider/modal-provider";
+import { ToastProvider } from "@/provider/toast-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import type { Metadata } from "next";
@@ -21,6 +22,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
+          <ToastProvider />
           <ModalProvider />
           {children}
         </body>
