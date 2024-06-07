@@ -26,7 +26,7 @@ const formSchema = z.object({
 
 export const StoreModal = () => {
   const storeModal = useStoreModal();
-  const router = useRouter();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -47,7 +47,6 @@ export const StoreModal = () => {
     } finally {
       setIsLoading(false);
     }
-    console.log(value);
   };
 
   return (
