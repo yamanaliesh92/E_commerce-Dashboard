@@ -4,11 +4,17 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Store } from "@prisma/client";
 import { Trash } from "lucide-react";
+import * as z from "zod";
 import React from "react";
 
 interface SettingsFromProps {
   initialData: Store;
 }
+
+const formSchema = z.object({
+  name: z.string().min(1),
+});
+type SettingsFormValue = z.infer<typeof formSchema>;
 
 export default function SettingsForm({ initialData }: SettingsFromProps) {
   return (
