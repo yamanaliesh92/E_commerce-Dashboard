@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import { useStoreModal } from "../../../hook/use-store-modal";
+import { useStoreModal } from "../../../../hook/use-store-modal";
 
 export default function Home() {
   const onOpen = useStoreModal((state) => state.onOpen);
@@ -10,5 +10,5 @@ export default function Home() {
       onOpen();
     }
   }, [isOpen, onOpen]);
-  return <>hellon</>;
+  return null;
 }
