@@ -17,6 +17,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { useParams, useRouter } from "next/navigation";
 
 interface SettingsFromProps {
   initialData: Store;
@@ -28,6 +31,8 @@ const formSchema = z.object({
 type SettingsFormValue = z.infer<typeof formSchema>;
 
 export default function SettingsForm({ initialData }: SettingsFromProps) {
+  const params = useParams();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const form = useForm<SettingsFormValue>({
@@ -35,7 +40,21 @@ export default function SettingsForm({ initialData }: SettingsFromProps) {
     defaultValues: initialData,
   });
 
-  const onSubmit = async (data: SettingsFormValue) => {};
+  const onSubmit = async (data: SettingsFormValue) => {
+    try {
+      setLoading(true);
+      const response = await axios.patch(
+        `http://localhost:3000/api/store/${params.storeId}`,
+        data
+      );
+      router.refresh();
+      toast.success("Store updated");
+    } catch {
+      toast.error("some thing went wrong");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
