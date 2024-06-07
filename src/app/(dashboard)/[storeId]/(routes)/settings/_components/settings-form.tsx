@@ -3,7 +3,7 @@ import Heading from "@/components/heading";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Store } from "@prisma/client";
-import { Trash } from "lucide-react";
+import { Flag, Trash } from "lucide-react";
 import * as z from "zod";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -20,6 +20,7 @@ import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
+import AlertModal from "./alert-modal";
 
 interface SettingsFromProps {
   initialData: Store;
@@ -43,7 +44,7 @@ export default function SettingsForm({ initialData }: SettingsFromProps) {
   const onSubmit = async (data: SettingsFormValue) => {
     try {
       setLoading(true);
-      const response = await axios.patch(
+      await axios.patch(
         `http://localhost:3000/api/store/${params.storeId}`,
         data
       );
@@ -56,8 +57,27 @@ export default function SettingsForm({ initialData }: SettingsFromProps) {
     }
   };
 
+  const onDelete = async () => {
+    try {
+      setLoading(true);
+      await axios.delete(`http://localhost:3000/api/store/${params.storeId}`);
+      router.push("/");
+      toast.success("Store deleted.");
+    } catch {
+      toast.error("Make sure you removed all products and categories first.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
+      <AlertModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        onConfirm={onDelete}
+        loading={loading}
+      />
       <div className="flex items-center justify-between">
         <Heading title="Settings" description="Manage store preferences" />
         <Button
