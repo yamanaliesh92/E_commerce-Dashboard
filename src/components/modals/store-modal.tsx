@@ -18,6 +18,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   name: z.string().min(1),
@@ -25,6 +26,7 @@ const formSchema = z.object({
 
 export const StoreModal = () => {
   const storeModal = useStoreModal();
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -35,8 +37,11 @@ export const StoreModal = () => {
   const onSubmit = async (value: z.infer<typeof formSchema>) => {
     try {
       setIsLoading(true);
-      await axios.post("http://localhost:3000/api/store", value);
-      toast.success("Store created");
+      const response = await axios.post(
+        "http://localhost:3000/api/store",
+        value
+      );
+      window.location.assign(`/${response.data.id}`);
     } catch {
       toast.error("some thing went wrong");
     } finally {
