@@ -3,7 +3,7 @@ import Heading from "@/components/heading";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Store } from "@prisma/client";
-import { Flag, Trash } from "lucide-react";
+import { Trash } from "lucide-react";
 import * as z from "zod";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";

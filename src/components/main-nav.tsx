@@ -16,6 +16,12 @@ export default function MainNav({
       label: "Settings",
       active: pathName === `/${params.storeId}/settings`,
     },
+
+    {
+      href: `/${params.storeId}`,
+      label: "Overview",
+      active: pathName === `/${params.storeId}`,
+    },
   ];
   return (
     <nav className={cn("flex items-center space-x-4 lg:space-x-6", className)}>
