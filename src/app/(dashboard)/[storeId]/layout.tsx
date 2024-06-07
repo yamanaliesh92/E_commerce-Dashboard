@@ -1,3 +1,4 @@
+import Navbar from "@/components/navbar";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
@@ -23,7 +24,7 @@ export default async function layout({
   }
   return (
     <div>
-      <h1>this is will be navbar</h1>
+      <Navbar />
       {children}
     </div>
   );
