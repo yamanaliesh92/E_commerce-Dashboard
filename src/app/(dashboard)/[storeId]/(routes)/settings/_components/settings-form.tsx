@@ -1,4 +1,5 @@
 "use client";
+import Heading from "@/components/heading";
 import { Store } from "@prisma/client";
 import React from "react";
 
