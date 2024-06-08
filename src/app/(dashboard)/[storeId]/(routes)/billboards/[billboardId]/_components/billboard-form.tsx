@@ -21,7 +21,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 
-import { ApiAlert } from "@/components/ui/api-alert";
+import ImageUpload from "@/components/ui/upload-image";
 
 interface BillboardFromProps {
   initialData: Billboard | null;
@@ -35,7 +35,6 @@ const formSchema = z.object({
 type BillboardFormValue = z.infer<typeof formSchema>;
 
 export default function BillboardFrom({ initialData }: BillboardFromProps) {
-  const origin = useOrigin();
   const params = useParams();
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -59,12 +58,20 @@ export default function BillboardFrom({ initialData }: BillboardFromProps) {
   const onSubmit = async (data: BillboardFormValue) => {
     try {
       setLoading(true);
-      await axios.patch(
-        `http://localhost:3000/api/store/${params.storeId}`,
-        data
-      );
-      router.refresh();
-      toast.success("Store updated");
+      if (initialData) {
+        await axios.patch(
+          `http://localhost:3000/api/${params.storeId}/billboards/${params.billboardId}`,
+          data
+        );
+      } else {
+        await axios.post(
+          `http://localhost:3000/api/${params.storeId}/billboards`,
+          data
+        );
+      }
+
+      // router.refresh();
+      toast.success(toastMessage);
     } catch {
       toast.error("some thing went wrong");
     } finally {
@@ -75,24 +82,31 @@ export default function BillboardFrom({ initialData }: BillboardFromProps) {
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`http://localhost:3000/api/store/${params.storeId}`);
+
+      await axios.delete(
+        `http://localhost:3000/api/${params.storeId}/billboards/${params.billboardId}`
+      );
+
       router.push("/");
-      toast.success("Store deleted.");
+      toast.success("Billboard deleted.");
     } catch {
-      toast.error("Make sure you removed all products and categories first.");
+      toast.error(
+        "Make sure you removed all categories using this billboard first."
+      );
     } finally {
       setLoading(false);
+      setOpen(false);
     }
   };
 
   return (
     <>
-      <AlertModal
+      {/* <AlertModal
         isOpen={open}
         onClose={() => setOpen(false)}
         onConfirm={onDelete}
         loading={loading}
-      />
+      /> */}
       <div className="flex items-center justify-between">
         <Heading title={title} description={description} />
         {initialData && (
@@ -112,6 +126,24 @@ export default function BillboardFrom({ initialData }: BillboardFromProps) {
           onSubmit={form.handleSubmit(onSubmit)}
           className="w-full space-y-8"
         >
+          <FormField
+            control={form.control}
+            name="imgUrl"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Background image</FormLabel>
+                <FormControl>
+                  <ImageUpload
+                    disabled={loading}
+                    onChange={(url) => field.onChange(url)}
+                    onRemove={() => field.onChange("")}
+                    value={field.value ? [field.value] : []}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <div className="grid grid-cols-3 gap-8">
             <FormField
               control={form.control}
@@ -137,11 +169,6 @@ export default function BillboardFrom({ initialData }: BillboardFromProps) {
         </form>
       </Form>
       <Separator />
-      <ApiAlert
-        title="NEXT_PUBLIC_API_URL"
-        variant={"public"}
-        description={`${origin}/api/${params.storeId}`}
-      />
     </>
   );
 }

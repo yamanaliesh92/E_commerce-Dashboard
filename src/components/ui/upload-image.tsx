@@ -23,12 +23,15 @@ export default function ImageUpload({
   useEffect(() => setIsMounted(true), []);
 
   const onUpload = (result: any) => {
+    // console.log("result", result.info);
     onChange(result.info.secure_url);
   };
 
   if (!isMounted) {
     return null;
   }
+
+  console.log("DDDDDDDDDDDDDDDDDDD", value);
 
   return (
     <div>
@@ -47,11 +50,17 @@ export default function ImageUpload({
                 <Trash className="h-4 w-4" />
               </Button>
             </div>
-            <Image alt="Image" className="object-cover" src={url} />
+            <Image
+              alt="Image"
+              width={200}
+              height={200}
+              className="object-cover"
+              src={url}
+            />
           </div>
         ))}
       </div>
-      <CldUploadWidget uploadPreset="j0am2dyf" onUploadAdded={onUpload}>
+      <CldUploadWidget uploadPreset="j0am2dyf" onUpload={onUpload}>
         {({ open }) => {
           const onClick = () => {
             open();
@@ -64,6 +73,7 @@ export default function ImageUpload({
               onClick={onClick}
             >
               <ImagePlus className="w-4 h-4 mr-2" />
+              Upload an image
             </Button>
           );
         }}
