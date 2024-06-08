@@ -1,4 +1,5 @@
 import React from "react";
+import BillboardClient from "./_components/billboard-client";
 
 export default function BillboardPage() {
   return (
