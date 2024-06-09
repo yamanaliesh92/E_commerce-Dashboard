@@ -1,5 +1,9 @@
 import React from "react";
 
-export default function ApiList() {
+interface ApiListProps {
+  entityName: string;
+  entityIdName: string;
+}
+export default function ApiList({}: ApiListProps) {
   return <div>Api</div>;
 }
