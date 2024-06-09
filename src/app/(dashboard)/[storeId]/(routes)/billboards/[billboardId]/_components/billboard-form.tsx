@@ -22,6 +22,7 @@ import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 
 import ImageUpload from "@/components/ui/upload-image";
+import AlertModal from "../../../settings/_components/alert-modal";
 
 interface BillboardFromProps {
   initialData: Billboard | null;
@@ -60,17 +61,16 @@ export default function BillboardFrom({ initialData }: BillboardFromProps) {
       setLoading(true);
       if (initialData) {
         await axios.patch(
-          `http://localhost:3000/api/${params.storeId}/billboards/${params.billboardId}`,
+          `http://localhost:3000/api/store/${params.storeId}/billboards/${params.billboardId}`,
           data
         );
       } else {
         await axios.post(
-          `http://localhost:3000/api/${params.storeId}/billboards`,
+          `http://localhost:3000/api/store/${params.storeId}/billboards`,
           data
         );
       }
-
-      // router.refresh();
+      router.push(`/${params.storeId}/billboards`);
       toast.success(toastMessage);
     } catch {
       toast.error("some thing went wrong");
@@ -101,12 +101,12 @@ export default function BillboardFrom({ initialData }: BillboardFromProps) {
 
   return (
     <>
-      {/* <AlertModal
+      <AlertModal
         isOpen={open}
         onClose={() => setOpen(false)}
         onConfirm={onDelete}
         loading={loading}
-      /> */}
+      />
       <div className="flex items-center justify-between">
         <Heading title={title} description={description} />
         {initialData && (

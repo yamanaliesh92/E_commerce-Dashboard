@@ -70,6 +70,7 @@ export default function SettingsForm({ initialData }: SettingsFromProps) {
       toast.error("Make sure you removed all products and categories first.");
     } finally {
       setLoading(false);
+      setOpen(false);
     }
   };
 
