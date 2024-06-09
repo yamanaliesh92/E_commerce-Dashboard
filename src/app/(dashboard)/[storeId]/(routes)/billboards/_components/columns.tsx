@@ -6,21 +6,15 @@ export type BillboardColumn = {
   id: string;
   label: string;
   createdAt: string;
-  status: "pending" | "processing" | "success" | "failed";
-  email: string;
 };
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<BillboardColumn>[] = [
   {
-    accessorKey: "status",
-    header: "Status",
+    accessorKey: "label",
+    header: "Label",
   },
   {
-    accessorKey: "email",
-    header: "Email",
-  },
-  {
-    accessorKey: "amount",
-    header: "Amount",
+    accessorKey: "created",
+    header: "CreatedAt",
   },
 ];
