@@ -168,7 +168,6 @@ export default function BillboardFrom({ initialData }: BillboardFromProps) {
           </Button>
         </form>
       </Form>
-      <Separator />
     </>
   );
 }

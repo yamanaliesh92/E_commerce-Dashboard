@@ -26,7 +26,7 @@ export const ApiAlert = ({
   description,
   variant = "public",
 }: ApiAlertProps) => {
-  const onClick = () => {
+  const onCopy = () => {
     navigator.clipboard.writeText(description);
     toast.success("API Route copied to the clipboard");
   };
@@ -41,7 +41,7 @@ export const ApiAlert = ({
         <code className="relative bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">
           {description}
         </code>
-        <Button variant={"outline"} onClick={onClick}>
+        <Button variant={"outline"} onClick={onCopy}>
           <Copy className="h-4 w-4" />
         </Button>
       </AlertDescription>
