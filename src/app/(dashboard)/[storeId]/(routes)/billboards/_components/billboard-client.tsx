@@ -36,7 +36,7 @@ export default function BillboardClient({ data }: BillboardClientProps) {
       <DataTable searchKey="label" data={data} columns={columns} />
       <Heading title="API" description="API calls for Billboards" />
       <Separator />
-      <ApiList />
+      <ApiList entityName="billboard" entityIdName="billboardId" />
     </>
   );
 }

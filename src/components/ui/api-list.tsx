@@ -2,6 +2,7 @@
 import { useParams, useRouter } from "next/navigation";
 import React from "react";
 import { useOrigin } from "../../../hook/use-origin";
+import { ApiAlert } from "./api-alert";
 
 interface ApiListProps {
   entityName: string;
@@ -12,5 +13,37 @@ export default function ApiList({ entityIdName, entityName }: ApiListProps) {
   const params = useParams();
 
   const baseUrl = `${origin}/api/${params.storeId}`;
-  return <div>Api</div>;
+  return (
+    <>
+      <ApiAlert
+        title="GET"
+        variant={"public"}
+        description={`${baseUrl}/${entityName}`}
+      />
+
+      <ApiAlert
+        title="GET"
+        variant={"public"}
+        description={`${baseUrl}/${entityName}/{${entityIdName}}`}
+      />
+
+      <ApiAlert
+        title="POST"
+        variant={"admin"}
+        description={`${baseUrl}/${entityName}`}
+      />
+
+      <ApiAlert
+        title="PATCH"
+        variant={"admin"}
+        description={`${baseUrl}/${entityName}/{${entityIdName}}`}
+      />
+
+      <ApiAlert
+        title="DELETE"
+        variant={"admin"}
+        description={`${baseUrl}/${entityName}/{${entityIdName}}`}
+      />
+    </>
+  );
 }
