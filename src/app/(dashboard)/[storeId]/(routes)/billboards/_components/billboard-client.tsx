@@ -1,5 +1,6 @@
 "use client";
 import Heading from "@/components/heading";
+import ApiList from "@/components/ui/api-list";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-tabel";
 import { Separator } from "@/components/ui/separator";
@@ -35,6 +36,7 @@ export default function BillboardClient({ data }: BillboardClientProps) {
       <DataTable searchKey="label" data={data} columns={columns} />
       <Heading title="API" description="API calls for Billboards" />
       <Separator />
+      <ApiList />
     </>
   );
 }
