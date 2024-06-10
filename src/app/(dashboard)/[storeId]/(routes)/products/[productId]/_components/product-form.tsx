@@ -24,6 +24,13 @@ import { useParams, useRouter } from "next/navigation";
 import ImageUpload from "@/components/ui/upload-image";
 import AlertModal from "../../../settings/_components/alert-modal";
 
+import {
+  SelectContent,
+  Select,
+  SelectItem,
+  SelectTrigger,
+} from "@/components/ui/select";
+
 interface ProductFromProps {
   initialData: (Product & { images: Image[] }) | null;
 }
@@ -200,6 +207,39 @@ export default function ProductFrom({ initialData }: ProductFromProps) {
                       {...field}
                     />
                   </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="categoryId"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Category</FormLabel>
+                  <Select
+                    disabled={loading}
+                    onValueChange={field.onChange}
+                    value={field.value}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue
+                          defaultValue={field.value}
+                          placeholder="Select a billboard"
+                        />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {categories.map((category) => (
+                        <SelectItem value={category.id} key={category.id}>
+                          {category.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}
