@@ -185,6 +185,25 @@ export default function ProductFrom({ initialData }: ProductFromProps) {
                 </FormItem>
               )}
             />
+
+            <FormField
+              control={form.control}
+              name="price"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Price</FormLabel>
+                  <FormControl>
+                    <Input
+                      type={"number"}
+                      disabled={loading}
+                      placeholder="99.9"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
           <Button disabled={loading} type="submit">
             {action}
