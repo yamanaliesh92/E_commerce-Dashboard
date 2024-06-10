@@ -15,10 +15,10 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import AlertModal from "../../settings/_components/alert-modal";
 
-import { BillboardColumn } from "./columns";
+import { SizeColumn } from "./columns";
 
 interface CellActionProps {
-  data: BillboardColumn;
+  data: SizeColumn;
 }
 export const CellAction = ({ data }: CellActionProps) => {
   const [open, setOpen] = useState(false);
@@ -27,7 +27,7 @@ export const CellAction = ({ data }: CellActionProps) => {
   const params = useParams();
   const onCopy = (id: string) => {
     navigator.clipboard.writeText(id);
-    toast.success("Billboard id copied to the clipboard");
+    toast.success("Size id copied to the clipboard");
   };
 
   const onDelete = async () => {
@@ -35,16 +35,15 @@ export const CellAction = ({ data }: CellActionProps) => {
       setLoading(true);
 
       await axios.delete(
-        `http://localhost:3000/api/store/${params.storeId}/billboards/${data.id}`
+        `http://localhost:3000/api/store/${params.storeId}/sizes/${data.id}`
       );
 
-      router.push(`/${params.storeId}/billboards`);
+      router.push(`/${params.storeId}/sizes`);
+
+      toast.success("Sizes deleted.");
       router.refresh();
-      toast.success("Billboard deleted.");
     } catch {
-      toast.error(
-        "Make sure you removed all categories using this billboard first."
-      );
+      toast.error("Make sure you removed all products using this size first.");
     } finally {
       setLoading(false);
       setOpen(false);
@@ -75,9 +74,7 @@ export const CellAction = ({ data }: CellActionProps) => {
             Copy id
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() =>
-              router.push(`/${params.storeId}/billboards/${data.id}`)
-            }
+            onClick={() => router.push(`/${params.storeId}/sizes/${data.id}`)}
             className="cursor-pointer"
           >
             <Edit className="mr-2 h-4 w-4" />

@@ -71,6 +71,7 @@ export default function BillboardFrom({ initialData }: BillboardFromProps) {
         );
       }
       router.push(`/${params.storeId}/billboards`);
+      router.refresh();
       toast.success(toastMessage);
     } catch {
       toast.error("some thing went wrong");
@@ -88,6 +89,7 @@ export default function BillboardFrom({ initialData }: BillboardFromProps) {
       );
 
       router.push("/");
+      router.refresh();
       toast.success("Billboard deleted.");
     } catch {
       toast.error(
