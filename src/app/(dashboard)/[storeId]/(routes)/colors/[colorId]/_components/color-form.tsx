@@ -156,6 +156,7 @@ export default function ColorFrom({ initialData }: ColorFromProps) {
                         placeholder="Color value"
                         {...field}
                       />
+
                       <div
                         className="border p-4 rounded-full"
                         style={{ borderColor: field.value }}
