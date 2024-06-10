@@ -75,7 +75,7 @@ export async function DELETE(
 
     return NextResponse.json(deleteColor);
   } catch (error) {
-    console.log("[SIZE_DECOLOR]", error);
+    console.log("[SIZE_DELETE]", error);
     return NextResponse.json("internal server error", { status: 500 });
   }
 }
