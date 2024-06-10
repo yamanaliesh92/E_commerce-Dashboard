@@ -1,7 +1,7 @@
 import { db } from "@/lib/db";
 import React from "react";
 import { format } from "date-fns";
-import CategoryClient from "./_components/billboard-client";
+import CategoryClient from "./_components/category-client";
 import { CategoryColumn } from "./_components/columns";
 
 export default async function BillboardPage({

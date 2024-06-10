@@ -35,7 +35,7 @@ export const CellAction = ({ data }: CellActionProps) => {
       setLoading(true);
 
       await axios.delete(
-        `http://localhost:3000/api/${params.storeId}/billboards/${data.id}`
+        `http://localhost:3000/api/store/${params.storeId}/billboards/${data.id}`
       );
 
       router.push(`/${params.storeId}/billboards`);

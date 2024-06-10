@@ -27,7 +27,7 @@ export const CellAction = ({ data }: CellActionProps) => {
   const params = useParams();
   const onCopy = (id: string) => {
     navigator.clipboard.writeText(id);
-    toast.success("Billboard id copied to the clipboard");
+    toast.success("Category id copied to the clipboard");
   };
 
   const onDelete = async () => {
@@ -35,14 +35,14 @@ export const CellAction = ({ data }: CellActionProps) => {
       setLoading(true);
 
       await axios.delete(
-        `http://localhost:3000/api/${params.storeId}/billboards/${data.id}`
+        `http://localhost:3000/api/store/${params.storeId}/categories/${data.id}`
       );
 
-      router.push(`/${params.storeId}/billboards`);
-      toast.success("Billboard deleted.");
+      router.push(`/${params.storeId}/categories`);
+      toast.success("Category deleted.");
     } catch {
       toast.error(
-        "Make sure you removed all categories using this billboard first."
+        "Make sure you removed all products using this category first."
       );
     } finally {
       setLoading(false);
@@ -75,7 +75,7 @@ export const CellAction = ({ data }: CellActionProps) => {
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() =>
-              router.push(`/${params.storeId}/billboards/${data.id}`)
+              router.push(`/${params.storeId}/categories/${data.id}`)
             }
             className="cursor-pointer"
           >
