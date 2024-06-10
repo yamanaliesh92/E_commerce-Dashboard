@@ -40,7 +40,7 @@ export const CellAction = ({ data }: CellActionProps) => {
 
       router.push(`/${params.storeId}/sizes`);
 
-      toast.success("Sizes deleted.");
+      toast.success("Color deleted.");
       router.refresh();
     } catch {
       toast.error("Make sure you removed all products using this color first.");

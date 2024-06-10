@@ -42,7 +42,7 @@ export default function ColorFrom({ initialData }: ColorFromProps) {
 
   const title = initialData ? "Edit color" : "Create color";
   const description = initialData ? "Edit a color" : "Add a new color";
-  const toastMessage = initialData ? "Size updated." : "Size created.";
+  const toastMessage = initialData ? "Color updated." : "Color created.";
   const action = initialData ? "Save changes" : "Create";
 
   const form = useForm<SizeFormValue>({
