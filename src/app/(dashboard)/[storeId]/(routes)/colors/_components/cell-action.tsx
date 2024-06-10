@@ -35,7 +35,7 @@ export const CellAction = ({ data }: CellActionProps) => {
       setLoading(true);
 
       await axios.delete(
-        `http://localhost:3000/api/store/${params.storeId}/sizes/${data.id}`
+        `http://localhost:3000/api/store/${params.storeId}/colors/${data.id}`
       );
 
       router.push(`/${params.storeId}/sizes`);
@@ -43,7 +43,7 @@ export const CellAction = ({ data }: CellActionProps) => {
       toast.success("Sizes deleted.");
       router.refresh();
     } catch {
-      toast.error("Make sure you removed all products using this size first.");
+      toast.error("Make sure you removed all products using this color first.");
     } finally {
       setLoading(false);
       setOpen(false);
@@ -74,7 +74,7 @@ export const CellAction = ({ data }: CellActionProps) => {
             Copy id
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() => router.push(`/${params.storeId}/sizes/${data.id}`)}
+            onClick={() => router.push(`/${params.storeId}/colors/${data.id}`)}
             className="cursor-pointer"
           >
             <Edit className="mr-2 h-4 w-4" />
