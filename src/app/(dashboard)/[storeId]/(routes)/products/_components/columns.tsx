@@ -5,7 +5,13 @@ import { CellAction } from "./cell-action";
 
 export type ProductColumn = {
   id: string;
-  label: string;
+  name: string;
+  price: string;
+  category: string;
+  size: string;
+  color: string;
+  isArchived: boolean;
+  isFeatured: boolean;
   createdAt: string;
 };
 
