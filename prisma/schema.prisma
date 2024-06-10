@@ -90,4 +90,14 @@ model Product{
   updatedAt DateTime  @updatedAt
   colorId String
   color Color @relation(fields: [colorId],references: [id])
+  Images Image[]
+}
+
+model Image{
+    id String @id @default(uuid())
+    productId String
+    product Product @relation(fields: [productId],references: [id],onDelete:Cascade)
+    url String
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
 }
