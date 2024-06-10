@@ -2,7 +2,7 @@
 import Heading from "@/components/heading";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { PRoduct, Product, Store } from "@prisma/client";
+import { Image, Product } from "@prisma/client";
 import { Trash } from "lucide-react";
 import * as z from "zod";
 import React, { useState } from "react";
@@ -25,12 +25,18 @@ import ImageUpload from "@/components/ui/upload-image";
 import AlertModal from "../../../settings/_components/alert-modal";
 
 interface ProductFromProps {
-  initialData: Product | null;
+  initialData: (Product & { images: Image[] }) | null;
 }
 
 const formSchema = z.object({
-  label: z.string().min(1),
-  imgUrl: z.string().min(1),
+  name: z.string().min(1),
+  images: z.object({ url: z.string() }).array(),
+  price: z.coerce.number().min(1),
+  categoryId: z.string().min(1),
+  sizeId: z.string().min(1),
+  colorId: z.string().min(1),
+  isFeatured: z.boolean().default(false).optional(),
+  isArchived: z.boolean().default(false).optional(),
 });
 
 type ProductFormValue = z.infer<typeof formSchema>;
@@ -48,10 +54,21 @@ export default function ProductFrom({ initialData }: ProductFromProps) {
 
   const form = useForm<ProductFormValue>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData || {
-      label: "",
-      imgUrl: "",
-    },
+    defaultValues: initialData
+      ? {
+          ...initialData,
+          price: parseFloat(String(initialData.price)),
+        }
+      : {
+          name: "",
+          images: [],
+          price: 0,
+          categoryId: "",
+          sizeId: "",
+          colorId: "",
+          isFeatured: false,
+          isArchived: false,
+        },
   });
 
   const onSubmit = async (data: ProductFormValue) => {
