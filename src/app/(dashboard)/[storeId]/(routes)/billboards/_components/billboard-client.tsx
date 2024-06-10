@@ -6,7 +6,7 @@ import { DataTable } from "@/components/ui/data-tabel";
 import { Separator } from "@/components/ui/separator";
 import { Billboard } from "@prisma/client";
 import { Plus } from "lucide-react";
-import { useParams, usePathname, useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React from "react";
 import { BillboardColumn, columns } from "./columns";
 

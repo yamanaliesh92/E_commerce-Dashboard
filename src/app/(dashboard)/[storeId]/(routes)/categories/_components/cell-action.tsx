@@ -39,6 +39,7 @@ export const CellAction = ({ data }: CellActionProps) => {
       );
 
       router.push(`/${params.storeId}/categories`);
+      router.refresh();
       toast.success("Category deleted.");
     } catch {
       toast.error(
