@@ -38,7 +38,7 @@ export const CellAction = ({ data }: CellActionProps) => {
         `http://localhost:3000/api/store/${params.storeId}/colors/${data.id}`
       );
 
-      router.push(`/${params.storeId}/sizes`);
+      router.push(`/${params.storeId}/colors`);
 
       toast.success("Color deleted.");
       router.refresh();
