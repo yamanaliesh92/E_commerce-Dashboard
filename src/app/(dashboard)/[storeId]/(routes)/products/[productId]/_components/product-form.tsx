@@ -2,7 +2,7 @@
 import Heading from "@/components/heading";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Image, Product } from "@prisma/client";
+import { Category, Color, Image, Product, Size } from "@prisma/client";
 import { Trash } from "lucide-react";
 import * as z from "zod";
 import React, { useState } from "react";
@@ -29,10 +29,14 @@ import {
   Select,
   SelectItem,
   SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
 
 interface ProductFromProps {
   initialData: (Product & { images: Image[] }) | null;
+  sizes: Size[];
+  colors: Color[];
+  categories: Category[];
 }
 
 const formSchema = z.object({
@@ -48,7 +52,12 @@ const formSchema = z.object({
 
 type ProductFormValue = z.infer<typeof formSchema>;
 
-export default function ProductFrom({ initialData }: ProductFromProps) {
+export default function ProductFrom({
+  initialData,
+  categories,
+  colors,
+  sizes,
+}: ProductFromProps) {
   const params = useParams();
   const router = useRouter();
   const [open, setOpen] = useState(false);
