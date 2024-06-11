@@ -34,7 +34,7 @@ export default function SizeClient({ data }: SizeClientProps) {
       <DataTable searchKey="name" data={data} columns={columns} />
       <Heading title="API" description="API calls for Sizes" />
       <Separator />
-      <ApiList entityName="size" entityIdName="sizeId" />
+      <ApiList entityName="sizes" entityIdName="sizeId" />
     </>
   );
 }

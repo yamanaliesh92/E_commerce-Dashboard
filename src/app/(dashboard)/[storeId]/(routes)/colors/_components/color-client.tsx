@@ -34,7 +34,7 @@ export default function ColorClient({ data }: ColorClientProps) {
       <DataTable searchKey="name" data={data} columns={columns} />
       <Heading title="API" description="API calls for Colors" />
       <Separator />
-      <ApiList entityName="color" entityIdName="colorId" />
+      <ApiList entityName="colors" entityIdName="colorId" />
     </>
   );
 }
