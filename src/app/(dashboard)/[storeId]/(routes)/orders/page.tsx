@@ -20,10 +20,11 @@ export default async function OrderPage({
     },
   });
 
-  const formattedBillboards: OrderColumn[] = orders.map((item) => ({
+  const formattedOrders: OrderColumn[] = orders.map((item) => ({
     id: item.id,
     address: item.address,
     phone: item.phone,
+    isPaid: item.isPaid,
     createdAt: format(item.createdAt, "MMM do, yyy"),
     products: item.orderItem
       .map((orderItem) => orderItem.product.name)
@@ -38,7 +39,7 @@ export default async function OrderPage({
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <OrderClient data={formattedBillboards} />
+        <OrderClient data={formattedOrders} />
       </div>
     </div>
   );
