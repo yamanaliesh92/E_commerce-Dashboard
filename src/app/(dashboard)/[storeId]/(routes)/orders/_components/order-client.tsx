@@ -8,16 +8,13 @@ import { Billboard } from "@prisma/client";
 import { Plus } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import React from "react";
-import { OrderColumn, columns } from "./columns";
+import { OrderColumn } from "./columns";
 
 interface OrderClientProps {
   data: OrderColumn[];
 }
 
 export default function OrderClient({ data }: OrderClientProps) {
-  const router = useRouter();
-  const params = useParams();
-
   return (
     <>
       <div className="flex items-center justify-between">
@@ -26,11 +23,7 @@ export default function OrderClient({ data }: OrderClientProps) {
           description="Manage orders for your store"
         />
       </div>
-      <Separator />
-      <DataTable searchKey="" data={data} columns={columns} />
-      <Heading title="API" description="API calls for Orders" />
-      <Separator />
-      <ApiList entityName="order" entityIdName="orderId" />
+      <Separator />=
     </>
   );
 }
