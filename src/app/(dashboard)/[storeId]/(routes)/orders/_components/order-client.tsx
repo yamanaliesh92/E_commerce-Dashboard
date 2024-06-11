@@ -31,7 +31,7 @@ export default function OrderClient({ data }: OrderClientProps) {
         </Button>
       </div>
       <Separator />
-      <DataTable searchKey="label" data={data} columns={columns} />
+      <DataTable searchKey="" data={data} columns={columns} />
       <Heading title="API" description="API calls for Orders" />
       <Separator />
       <ApiList entityName="order" entityIdName="orderId" />
