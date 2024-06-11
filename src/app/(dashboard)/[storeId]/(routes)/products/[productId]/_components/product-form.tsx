@@ -125,9 +125,7 @@ export default function ProductFrom({
       router.refresh();
       toast.success("Product deleted.");
     } catch {
-      toast.error(
-        "Make sure you removed all categories using this product first."
-      );
+      toast.error("Some thing went wrong.");
     } finally {
       setLoading(false);
       setOpen(false);
