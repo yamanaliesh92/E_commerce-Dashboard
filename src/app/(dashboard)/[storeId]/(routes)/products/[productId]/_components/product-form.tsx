@@ -67,7 +67,7 @@ export default function ProductFrom({
 
   const title = initialData ? "Edit product" : "Create product";
   const description = initialData ? "Edit a product" : "Add a new product";
-  const toastMessage = initialData ? "PRoduct updated." : "PRoduct created.";
+  const toastMessage = initialData ? "Product updated." : "Product created.";
   const action = initialData ? "Save changes" : "Create";
 
   const form = useForm<ProductFormValue>({
