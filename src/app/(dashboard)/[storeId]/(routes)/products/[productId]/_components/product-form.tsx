@@ -35,7 +35,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 
 interface ProductFromProps {
-  initialData: (Product & { images: Image[] }) | null;
+  initialData: (Product & { Images: Image[] }) | null;
   sizes: Size[];
   colors: Color[];
   categories: Category[];
@@ -43,7 +43,7 @@ interface ProductFromProps {
 
 const formSchema = z.object({
   name: z.string().min(1),
-  images: z.object({ url: z.string() }).array(),
+  Images: z.object({ url: z.string() }).array(),
   price: z.coerce.number().min(1),
   categoryId: z.string().min(1),
   sizeId: z.string().min(1),
@@ -79,7 +79,7 @@ export default function ProductFrom({
         }
       : {
           name: "",
-          images: [],
+          Images: [],
           price: 0,
           categoryId: "",
           sizeId: "",
@@ -161,7 +161,7 @@ export default function ProductFrom({
         >
           <FormField
             control={form.control}
-            name="images"
+            name="Images"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Image</FormLabel>

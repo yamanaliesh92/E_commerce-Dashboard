@@ -17,7 +17,7 @@ export async function POST(
       name,
       sizeId,
       colorId,
-      images,
+      Images,
       isFeatured,
       isArchived,
       categoryId,
@@ -28,7 +28,7 @@ export async function POST(
       return NextResponse.json("Store id is required", { status: 400 });
     }
 
-    if (!images || !images.length) {
+    if (!Images || !Images.length) {
       return NextResponse.json("Images is required", { status: 400 });
     }
 
@@ -68,7 +68,7 @@ export async function POST(
         categoryId,
         Images: {
           createMany: {
-            data: [...images.map((image: { url: string }) => image)],
+            data: [...Images.map((image: { url: string }) => image)],
           },
         },
         price,
