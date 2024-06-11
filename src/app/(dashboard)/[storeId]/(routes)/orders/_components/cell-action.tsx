@@ -73,9 +73,7 @@ export const CellAction = ({ data }: CellActionProps) => {
             Copy id
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() =>
-              router.push(`/${params.storeId}/billboards/${data.id}`)
-            }
+            onClick={() => router.push(`/${params.storeId}/orders/${data.id}`)}
             className="cursor-pointer"
           >
             <Edit className="mr-2 h-4 w-4" />
