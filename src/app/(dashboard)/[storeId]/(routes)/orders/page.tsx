@@ -1,5 +1,9 @@
 import { db } from "@/lib/db";
+import formatPrice from "@/lib/utils";
+import { format } from "date-fns";
 import React from "react";
+import { OrderColumn } from "./_components/columns";
+import OrderClient from "./_components/order-client";
 
 export default async function OrderPage({
   params,
@@ -16,18 +20,26 @@ export default async function OrderPage({
     },
   });
 
-   const formattedBillboards: OrderColumn[] = .map((item) => ({
-     id: item.id,
-     label: item.label,
-     createdAt: format(item.createdAt, "MMM do, yyy"),
-   }));
+  const formattedBillboards: OrderColumn[] = orders.map((item) => ({
+    id: item.id,
+    address: item.address,
+    phone: item.phone,
+    createdAt: format(item.createdAt, "MMM do, yyy"),
+    products: item.orderItem
+      .map((orderItem) => orderItem.product.name)
+      .join(", "),
+    totalPrice: formatPrice(
+      item.orderItem.reduce((total, item) => {
+        return total + Number(item.product.price);
+      }, 0)
+    ),
+  }));
 
   return (
-     <div className="flex-col">
+    <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <BillboardClient data={formattedBillboards} />
+        <OrderClient data={formattedBillboards} />
       </div>
     </div>
   );
-  
 }
