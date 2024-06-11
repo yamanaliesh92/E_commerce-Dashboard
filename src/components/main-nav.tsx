@@ -24,6 +24,12 @@ export default function MainNav({
     },
 
     {
+      href: `/${params.storeId}/orders`,
+      label: "Orders",
+      active: pathName === `/${params.storeId}/orders`,
+    },
+
+    {
       href: `/${params.storeId}/categories`,
       label: "Categories",
       active: pathName === `/${params.storeId}/categories`,
