@@ -1,14 +1,11 @@
 "use client";
 import Heading from "@/components/heading";
-import ApiList from "@/components/ui/api-list";
-import { Button } from "@/components/ui/button";
+
 import { DataTable } from "@/components/ui/data-tabel";
 import { Separator } from "@/components/ui/separator";
-import { Billboard } from "@prisma/client";
-import { Plus } from "lucide-react";
-import { useParams, useRouter } from "next/navigation";
+
 import React from "react";
-import { OrderColumn } from "./columns";
+import { OrderColumn, columns } from "./columns";
 
 interface OrderClientProps {
   data: OrderColumn[];
@@ -23,7 +20,8 @@ export default function OrderClient({ data }: OrderClientProps) {
           description="Manage orders for your store"
         />
       </div>
-      <Separator />=
+      <Separator />
+      <DataTable searchKey="products" data={data} columns={columns} />
     </>
   );
 }
