@@ -3,6 +3,7 @@ import React from "react";
 import { format } from "date-fns";
 import ProductClient from "./_components/product-client";
 import { ProductColumn } from "./_components/columns";
+import formatPrice from "@/lib/utils";
 // import { formatter } from "@/lib/utils";
 
 export default async function ProductPage({
@@ -22,8 +23,8 @@ export default async function ProductPage({
     name: item.name,
     isArchived: item.isArchived,
     isFeatured: item.isFeatured,
-    // price: formatter.format(item.price.toNumber()),
-    price: item.price as any,
+
+    price: formatPrice(item.price.toNumber()),
     category: item.category.name,
     color: item.color.value,
     size: item.size.name,
