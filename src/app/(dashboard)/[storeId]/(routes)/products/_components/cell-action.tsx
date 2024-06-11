@@ -27,7 +27,7 @@ export const CellAction = ({ data }: CellActionProps) => {
   const params = useParams();
   const onCopy = (id: string) => {
     navigator.clipboard.writeText(id);
-    toast.success("Billboard id copied to the clipboard");
+    toast.success("Product id copied to the clipboard");
   };
 
   const onDelete = async () => {
