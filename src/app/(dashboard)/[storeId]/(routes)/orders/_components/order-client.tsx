@@ -25,10 +25,6 @@ export default function OrderClient({ data }: OrderClientProps) {
           title={`Order  (${data.length})`}
           description="Manage orders for your store"
         />
-        <Button onClick={() => router.push(`/${params.storeId}/orders/new`)}>
-          <Plus className="mr-2 h-4 w-4 " />
-          Add new
-        </Button>
       </div>
       <Separator />
       <DataTable searchKey="" data={data} columns={columns} />
