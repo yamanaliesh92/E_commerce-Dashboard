@@ -55,7 +55,7 @@ export async function GET(
       return NextResponse.json("Store id is required", { status: 400 });
     }
 
-    const colors = await db.color.findFirst({
+    const colors = await db.color.findMany({
       where: { storeId: params.storeId },
     });
 
