@@ -6,7 +6,6 @@ export async function PATCH(
   req: NextRequest,
   { params }: { params: { storeId: string; colorId: string } }
 ) {
-  console.log("+++++++++", { dd: params.colorId });
   try {
     const { userId } = auth();
     if (!userId) {
@@ -40,7 +39,7 @@ export async function PATCH(
     if (!storeByUserId) {
       return NextResponse.json("Unauthorized", { status: 403 });
     }
-    console.log("Value", value);
+
     const editColor = await db.color.updateMany({
       where: { id: params.colorId },
       data: { value, name },
