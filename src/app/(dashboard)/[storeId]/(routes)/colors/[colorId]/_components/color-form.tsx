@@ -159,7 +159,7 @@ export default function ColorFrom({ initialData }: ColorFromProps) {
 
                       <div
                         className="border p-4 rounded-full"
-                        style={{ borderColor: field.value }}
+                        style={{ backgroundColor: field.value }}
                       />
                     </div>
                   </FormControl>
