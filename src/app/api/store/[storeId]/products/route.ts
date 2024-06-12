@@ -98,7 +98,7 @@ export async function GET(
       return NextResponse.json("Store id is required", { status: 400 });
     }
 
-    const products = await db.product.findFirst({
+    const products = await db.product.findMany({
       where: {
         storeId: params.storeId,
         categoryId,

@@ -51,6 +51,7 @@ export async function GET(
   { params }: { params: { storeId: string } }
 ) {
   try {
+    console.log("++++++++s+++||");
     if (!params.storeId) {
       return NextResponse.json("Store id is required", { status: 400 });
     }
