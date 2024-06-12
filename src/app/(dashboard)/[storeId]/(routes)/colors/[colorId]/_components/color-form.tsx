@@ -60,7 +60,7 @@ export default function ColorFrom({ initialData }: ColorFromProps) {
       setLoading(true);
       if (initialData) {
         await axios.patch(
-          `http://localhost:3000/api/store/${params.storeId}/colors/${params.colors}`,
+          `http://localhost:3000/api/store/${params.storeId}/colors/${params.colorId}`,
           data
         );
       } else {
