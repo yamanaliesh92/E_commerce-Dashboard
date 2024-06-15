@@ -4,8 +4,14 @@ import { Separator } from "@/components/ui/separator";
 import formatPrice from "@/lib/utils";
 import { CreditCard, DollarSign, Package } from "lucide-react";
 import React from "react";
+import { getTotalRevenue } from "../../../../../action/get-total-revenue";
 
-export default function DashboardPage() {
+export default async function DashboardPage({
+  params,
+}: {
+  params: { storeId: string };
+}) {
+  const totalRevenue = await getTotalRevenue(params.storeId);
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6 ">
