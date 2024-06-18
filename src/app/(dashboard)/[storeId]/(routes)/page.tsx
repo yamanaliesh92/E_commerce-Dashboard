@@ -5,6 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import formatPrice from "@/lib/utils";
 import { CreditCard, DollarSign, Package } from "lucide-react";
 import React from "react";
+import { getGraphRevenue } from "../../../../../action/get-graph-revenue";
 import { getSalesCount } from "../../../../../action/get-sales-count";
 import { getStockCount } from "../../../../../action/get-stock-count";
 import { getTotalRevenue } from "../../../../../action/get-total-revenue";
@@ -17,6 +18,7 @@ export default async function DashboardPage({
   const totalRevenue = await getTotalRevenue(params.storeId);
   const salesCount = await getSalesCount(params.storeId);
   const stockCount = await getStockCount(params.storeId);
+  const graphRevenue = await getGraphRevenue(params.storeId);
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6 ">
@@ -64,7 +66,7 @@ export default async function DashboardPage({
             <CardTitle>Overview</CardTitle>
           </CardHeader>
           <CardContent className="pl-2">
-            <Overview />
+            <Overview data={graphRevenue} />
           </CardContent>
         </Card>
       </div>
