@@ -1,16 +1,17 @@
+import { db } from "@/lib/db";
 import { stripe } from "@/lib/stripe";
-import { PrismaClient } from "@prisma/client";
+
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { Stripe } from "stripe";
 
-const db = new PrismaClient();
-
 export async function POST(req: NextRequest) {
   const body = await req.text();
+
   const signature = headers().get("Stripe-Signature") as string;
 
   let event: Stripe.Event;
+
   try {
     event = stripe.webhooks.constructEvent(
       body,
@@ -37,7 +38,7 @@ export async function POST(req: NextRequest) {
 
   if (event.type === "checkout.session.completed") {
     const order = await db.order.update({
-      where: { id: session?.metadata?.orderID },
+      where: { id: session?.metadata?.orderId },
       data: {
         isPaid: true,
         address: addressString,
@@ -45,6 +46,7 @@ export async function POST(req: NextRequest) {
       },
       include: { orderItem: true },
     });
+    console.log("order", order);
     const productIds = order.orderItem.map((orderItem) => orderItem.productId);
     await db.product.updateMany({
       where: { id: { in: [...productIds] } },

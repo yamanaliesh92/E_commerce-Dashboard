@@ -22,11 +22,10 @@ export async function POST(
     if (!productIds || productIds.length === 0) {
       return NextResponse.json("Product ids are required", { status: 400 });
     }
-    console.log("Ids", productIds);
+
     const products = await db.product.findMany({
       where: { id: { in: productIds } },
     });
-    console.log("product", products);
 
     const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
 
@@ -72,6 +71,8 @@ export async function POST(
         orderId: order.id,
       },
     });
+
+    console.log("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSss", session);
 
     return NextResponse.json({ url: session.url }, { headers: corsHeaders });
   } catch (error) {

@@ -4,6 +4,7 @@ import { Separator } from "@/components/ui/separator";
 import formatPrice from "@/lib/utils";
 import { CreditCard, DollarSign, Package } from "lucide-react";
 import React from "react";
+import { getSalesCount } from "../../../../../action/get-sales-count";
 import { getTotalRevenue } from "../../../../../action/get-total-revenue";
 
 export default async function DashboardPage({
@@ -12,6 +13,7 @@ export default async function DashboardPage({
   params: { storeId: string };
 }) {
   const totalRevenue = await getTotalRevenue(params.storeId);
+  const salesCount = await getSalesCount(params.storeId);
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6 ">
@@ -26,7 +28,9 @@ export default async function DashboardPage({
               <DollarSign className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{formatPrice(100)}</div>
+              <div className="text-2xl font-bold">
+                {formatPrice(totalRevenue)}
+              </div>
             </CardContent>
           </Card>
 
