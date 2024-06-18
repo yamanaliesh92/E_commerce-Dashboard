@@ -1,4 +1,5 @@
 import Heading from "@/components/heading";
+import Overview from "@/components/overview";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import formatPrice from "@/lib/utils";
@@ -54,10 +55,18 @@ export default async function DashboardPage({
               <Package className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{stockCount</div>
+              <div className="text-2xl font-bold">{stockCount}</div>
             </CardContent>
           </Card>
         </div>
+        <Card className="col-span-4">
+          <CardHeader>
+            <CardTitle>Overview</CardTitle>
+          </CardHeader>
+          <CardContent className="pl-2">
+            <Overview />
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
